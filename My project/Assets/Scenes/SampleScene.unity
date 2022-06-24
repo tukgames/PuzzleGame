@@ -661,7 +661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainImage: testimage
-  res: {x: 2, y: 2}
+  res: {x: 1, y: 1}
   tilePre: {fileID: 8696085649360287579, guid: 0addee709fa49b649a61fecd2ec865c9, type: 3}
   blankPre: {fileID: 8717979586997507507, guid: 2241b1f06791ba74a91adadf75d8815e, type: 3}
   width: 2.4
@@ -672,7 +672,7 @@ MonoBehaviour:
   tiles: []
   blankTiles: []
   texture: {fileID: 0}
-  maxWidth: 24
+  maxWidth: 20
   maxHeight: 15
 --- !u!114 &1007531036
 MonoBehaviour:

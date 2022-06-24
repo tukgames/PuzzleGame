@@ -51,12 +51,12 @@ public class GridManager : MonoBehaviour
         
         for (int i = 0; i < rows+1; i++)
         {
-            DrawLine(new Vector3(transform.position.x - tm.width/2, transform.position.y - i*tm.height + tm.height/2, transform.position.z), new Vector3(transform.position.x + tm.width*columns - tm.width/2, transform.position.y - i * tm.height + tm.height / 2, transform.position.z), c, m);
+            DrawLine(new Vector3(transform.position.x, transform.position.y - i*tm.height, transform.position.z), new Vector3(transform.position.x + tm.width*columns, transform.position.y - i * tm.height, transform.position.z), c, m);
         }
 
         for (int i = 0; i < columns + 1; i++)
         {
-            DrawLine(new Vector3(transform.position.x + i * tm.width - tm.width / 2, transform.position.y + tm.height/2, transform.position.z), new Vector3(transform.position.x + i * tm.width - tm.width / 2, transform.position.y - tm.height * rows + tm.height / 2, transform.position.z), c, m);
+            DrawLine(new Vector3(transform.position.x + i * tm.width, transform.position.y, transform.position.z), new Vector3(transform.position.x + i * tm.width, transform.position.y - tm.height * rows, transform.position.z), c, m);
         }
     }
 

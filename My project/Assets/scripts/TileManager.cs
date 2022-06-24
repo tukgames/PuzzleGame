@@ -127,7 +127,7 @@ public class TileManager : MonoBehaviour
             float xOffset = width * (i % res.x);
             float yOffset = -height * (int)(i / res.x);
             Debug.Log(width);
-            blankTiles.Add(Instantiate(blankPre, new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, -.4f), Quaternion.identity));
+            blankTiles.Add(Instantiate(blankPre, new Vector3(transform.position.x + xOffset + width/2, transform.position.y + yOffset - height/2, -.4f), Quaternion.identity));
             blankTiles[i].transform.localScale = new Vector3(blankTiles[i].transform.localScale.x *width, blankTiles[i].transform.localScale.y * height, 1f);
 
         }
@@ -191,7 +191,7 @@ public class TileManager : MonoBehaviour
         GameObject t = tiles[i];
         float xOffset = width * ((t.GetComponent<Tile>().number)%res.x);
         float yOffset = -height * (int)((t.GetComponent<Tile>().number) / res.x);
-        t.transform.position = new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, 0);
+        t.transform.position = new Vector3(transform.position.x + xOffset + width/2, transform.position.y + yOffset - height/2, 0);
         t.GetComponent<Tile>().dragable = false;
         EnableSurroundingTiles(i);
     }
