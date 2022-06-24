@@ -28,6 +28,9 @@ public class TileManager : MonoBehaviour
 
     public Texture2D texture;
 
+    public float maxWidth;
+    public float maxHeight;
+
     private void Awake()
     {
         if (instance != null)
@@ -48,8 +51,21 @@ public class TileManager : MonoBehaviour
     void StartTiles(Texture2D t)
     {
         texture = t;
-        width = t.width / (res.x*100);
-        height = t.height / (res.y*100);
+        //width = t.width / (res.x*100);
+        //height = t.height / (res.y*100);
+        if(maxWidth/t.width <= maxHeight / t.height)
+        {
+            width = maxWidth / res.x;
+            //height = t.height * width / t.width;
+            height = ((t.height * maxWidth) / t.width) / res.y;
+        } else
+        {
+            height = maxHeight / res.y;
+            width = ((t.width * maxHeight) / t.height) / res.x;
+        }
+
+        Debug.Log("Height: " + height + " Width: " + width);
+        
         //string path = "sprites/images/" + mainImage + "/" + mainImage;
         pixelRes.x = t.width / res.x;
         pixelRes.y = t.height / res.y;
