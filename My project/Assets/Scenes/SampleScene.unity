@@ -627,6 +627,7 @@ GameObject:
   - component: {fileID: 1007531034}
   - component: {fileID: 1007531035}
   - component: {fileID: 1007531036}
+  - component: {fileID: 1007531037}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -660,8 +661,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836595393e37be3499b1aa8d977eeec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainImage: testimage
-  res: {x: 1, y: 1}
+  mainImage: flowerab
+  res: {x: 3, y: 3}
   tilePre: {fileID: 8696085649360287579, guid: 0addee709fa49b649a61fecd2ec865c9, type: 3}
   blankPre: {fileID: 8717979586997507507, guid: 2241b1f06791ba74a91adadf75d8815e, type: 3}
   width: 2.4
@@ -690,6 +691,30 @@ MonoBehaviour:
   c: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 0}
   m: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   alpha: 0.45
+  lines: []
+--- !u!114 &1007531037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007531033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414bdedbff7cb1048aeffeb7a41b4272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  images:
+  - {fileID: 2800000, guid: 9fc94f8457aa92747b6a82eb1106c547, type: 3}
+  - {fileID: 2800000, guid: 1bc979bd75e865d4b97504b871ab9e3d, type: 3}
+  sectors: []
+  res: {x: 2, y: 2}
+  maxHeight: 15
+  maxWidth: 15
+  pixelRes: {x: 0, y: 0}
+  width: 0
+  height: 0
+  sectorPre: {fileID: 101298968670061968, guid: a973128504c33214581443df30a69ac5, type: 3}
 --- !u!1 &1990869800
 GameObject:
   m_ObjectHideFlags: 0

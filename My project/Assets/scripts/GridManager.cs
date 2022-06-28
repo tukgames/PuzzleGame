@@ -17,6 +17,8 @@ public class GridManager : MonoBehaviour
 
     public static GridManager instance;
 
+    public List<GameObject> lines;
+
     public void Awake()
     {
         if(instance != null)
@@ -41,27 +43,27 @@ public class GridManager : MonoBehaviour
         
     }
 
-    public void DrawGrid()
+    public void DrawGrid(float rows, float columns, float width, float height)
     {
-        tm = TileManager.instance;
+        //tm = TileManager.instance;
         //Debug.Log(tm.numPieces);
         //Debug.L
-        float rows = tm.res.y;
-        float columns = tm.res.x;
+        //float rows = tm.res.y;
+        //float columns = tm.res.x;
         
         for (int i = 0; i < rows+1; i++)
         {
-            DrawLine(new Vector3(transform.position.x, transform.position.y - i*tm.height, transform.position.z), new Vector3(transform.position.x + tm.width*columns, transform.position.y - i * tm.height, transform.position.z), c, m);
+            lines.Add(DrawLine(new Vector3(transform.position.x, transform.position.y - i*height, transform.position.z), new Vector3(transform.position.x + width*columns, transform.position.y - i * height, transform.position.z), c, m));
         }
 
         for (int i = 0; i < columns + 1; i++)
         {
-            DrawLine(new Vector3(transform.position.x + i * tm.width, transform.position.y, transform.position.z), new Vector3(transform.position.x + i * tm.width, transform.position.y - tm.height * rows, transform.position.z), c, m);
+            lines.Add(DrawLine(new Vector3(transform.position.x + i * width, transform.position.y, transform.position.z), new Vector3(transform.position.x + i * width, transform.position.y - height * rows, transform.position.z), c, m));
         }
     }
 
 
-    void DrawLine(Vector3 start, Vector3 end, Color color, Material material)
+    GameObject DrawLine(Vector3 start, Vector3 end, Color color, Material material)
     {
         GameObject myLine = new GameObject();
         myLine.transform.position = start;
@@ -86,6 +88,17 @@ public class GridManager : MonoBehaviour
         lr.endWidth = lineWidth;
         lr.SetPosition(0, start);
         lr.SetPosition(1, end);
+
+        return myLine;
         //GameObject.Destroy(myLine, duration);
+    }
+
+    public void EraseLines()
+    {
+        for(int i = lines.Count-1; i >= 0; i--)
+        {
+            Destroy(lines[i]);
+        }
+        lines.Clear();
     }
 }

@@ -44,11 +44,11 @@ public class TileManager : MonoBehaviour
     }
     private void Start()
     {
-        Texture2D t = Resources.Load<Texture2D>("sprites/images/" + mainImage + "/" + mainImage);
+        //Texture2D t = Resources.Load<Texture2D>("sprites/images/" + mainImage + "/" + mainImage);
         
-        StartTiles(t);
+        //StartTiles(t);
     }
-    void StartTiles(Texture2D t)
+    public void StartTiles(Texture2D t)
     {
         texture = t;
         //width = t.width / (res.x*100);
@@ -74,7 +74,7 @@ public class TileManager : MonoBehaviour
         GenerateTiles();
         GenerateAndPlaceBlanks();
         PlaceInitialTile();
-        GridManager.instance.DrawGrid();
+        GridManager.instance.DrawGrid(res.y , res.x, width, height);
         //StartCoroutine(Solve());
     }
 
@@ -111,6 +111,7 @@ public class TileManager : MonoBehaviour
             tiles[i].name = "Tile" + i;
             tiles[i].GetComponent<Tile>().number = i;
             tiles[i].GetComponent<Tile>().dragable = true;
+            tiles[i].GetComponent<Tile>().placed = false;
             tiles[i].gameObject.SetActive(false);
             //tiles[i].gameObject.transform.localScale = new Vector3(tiles[i].transform.localScale.x * ((width) / 2.4f), tiles[i].transform.localScale.y * ((height) / 2.4f), 1f);
         }
@@ -126,7 +127,7 @@ public class TileManager : MonoBehaviour
         {
             float xOffset = width * (i % res.x);
             float yOffset = -height * (int)(i / res.x);
-            Debug.Log(width);
+            //Debug.Log(width);
             blankTiles.Add(Instantiate(blankPre, new Vector3(transform.position.x + xOffset + width/2, transform.position.y + yOffset - height/2, -.4f), Quaternion.identity));
             blankTiles[i].transform.localScale = new Vector3(blankTiles[i].transform.localScale.x *width, blankTiles[i].transform.localScale.y * height, 1f);
 
@@ -193,7 +194,21 @@ public class TileManager : MonoBehaviour
         float yOffset = -height * (int)((t.GetComponent<Tile>().number) / res.x);
         t.transform.position = new Vector3(transform.position.x + xOffset + width/2, transform.position.y + yOffset - height/2, 0);
         t.GetComponent<Tile>().dragable = false;
+        t.GetComponent<Tile>().placed = true;
         EnableSurroundingTiles(i);
+
+        //check if all the tiles are placed
+        if (CheckAllPlaced())
+        {
+            //erase grid
+            GridManager.instance.EraseLines();
+            //clear and delete all tiles
+            EraseTiles();
+            //tell sector manager
+            SectorManager.instance.SectorSolved();
+            
+        }
+
     }
 
     public void Solve2()
@@ -275,6 +290,29 @@ public class TileManager : MonoBehaviour
 
     public void DestoyTiles()
     {
+        tiles.Clear();
+        blankTiles.Clear();
+    }
+
+    public bool CheckAllPlaced()
+    {
+        for(int i = 0; i < tiles.Count; i++)
+        {
+            if(tiles[i].GetComponent<Tile>().placed == false)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void EraseTiles()
+    {
+        for(int i = tiles.Count - 1; i >= 0; i--)
+        {
+            Destroy(tiles[i]);
+            Destroy(blankTiles[i]);
+        }
         tiles.Clear();
         blankTiles.Clear();
     }

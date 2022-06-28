@@ -11,6 +11,7 @@ public class Tile : MonoBehaviour
 
     public bool dragging;
     public bool dragable;
+    public bool placed;
     public bool isOver;
     private float distance;
 
@@ -20,6 +21,7 @@ public class Tile : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         isOver = false;
         dragging = false;
+        
     }
 
     void OnMouseDown()
