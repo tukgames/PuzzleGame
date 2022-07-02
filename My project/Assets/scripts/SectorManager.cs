@@ -66,6 +66,42 @@ public class SectorManager : MonoBehaviour
 
         GenerateAndPlaceSectors();
         CreateAndAssignSprites();
+        //GenerateAllTilesWithSprite();
+        Sprite sprite = sectors[0].GetComponent<SpriteRenderer>().sprite;
+        //activatedSector = ;
+        //Debug.Log("width: " + sprite.rect.width + ", height: " + sprite.rect.height);
+        var croppedTexture = new Texture2D((int)Mathf.Abs(sprite.rect.width), (int)Mathf.Abs(sprite.rect.height));
+        var pixels = sprite.texture.GetPixels((int)sprite.textureRect.x,
+                                                 (int)(sprite.textureRect.y) - (int)pixelRes.y,
+                                                (int)Mathf.Abs(sprite.textureRect.width),
+                                                (int)Mathf.Abs(sprite.textureRect.height));
+        Debug.Log(sprite.textureRect.y);
+        croppedTexture.SetPixels(pixels);
+        croppedTexture.Apply();
+        TileManager.instance.GenerateAllInitialTiles((int)(res.x * res.y), croppedTexture);
+        GenerateAllTilesWithSprite();
+    }
+
+    public void GenerateAllTilesWithSprite()
+    {
+        for(int i = 0; i < res.y*res.x; i++)
+        {
+            Sprite sprite = sectors[i].GetComponent<SpriteRenderer>().sprite;
+            //activatedSector = i;
+            //Debug.Log("width: " + sprite.rect.width + ", height: " + sprite.rect.height);
+            var croppedTexture = new Texture2D((int)Mathf.Abs(sprite.rect.width), (int)Mathf.Abs(sprite.rect.height));
+            var pixels = sprite.texture.GetPixels((int)sprite.textureRect.x,
+                                                     (int)(sprite.textureRect.y) - (int)pixelRes.y,
+                                                    (int)Mathf.Abs(sprite.textureRect.width),
+                                                    (int)Mathf.Abs(sprite.textureRect.height));
+            Debug.Log(sprite.textureRect.y);
+            croppedTexture.SetPixels(pixels);
+            croppedTexture.Apply();
+            
+            TileManager.instance.textures.Add(croppedTexture);
+            //TileManager.instance.AssignSprites(i);
+
+        }
     }
 
     public void GenerateAndPlaceSectors()
@@ -104,7 +140,7 @@ public class SectorManager : MonoBehaviour
         croppedTexture.SetPixels(pixels);
         croppedTexture.Apply();
         GridManager.instance.EraseLines();
-        TileManager.instance.StartTiles(croppedTexture);
+        TileManager.instance.StartTiles( i);
         DeactivateSectors();
     }
 

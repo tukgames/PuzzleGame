@@ -15,12 +15,15 @@ public class Tile : MonoBehaviour
     public bool isOver;
     private float distance;
 
+    public bool active = false;
+
     //public Texture2D t;
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         isOver = false;
         dragging = false;
+        
         
     }
 
