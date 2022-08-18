@@ -628,6 +628,7 @@ GameObject:
   - component: {fileID: 1007531035}
   - component: {fileID: 1007531036}
   - component: {fileID: 1007531037}
+  - component: {fileID: 1007531038}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -670,11 +671,11 @@ MonoBehaviour:
   pixelRes: {x: 0, y: 0}
   timetosolve: 0.2
   genTransform: {fileID: 166280624}
-  tiles: []
   blankTiles: []
-  texture: {fileID: 0}
+  textures: []
   maxWidth: 20
   maxHeight: 15
+  cS: 0
 --- !u!114 &1007531036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,7 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb14e0ff8466aed458b2a9fbb169cb66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineWidth: 0.04
+  lineWidth: 0.1
   c: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 0}
   m: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   alpha: 0.45
@@ -715,6 +716,21 @@ MonoBehaviour:
   width: 0
   height: 0
   sectorPre: {fileID: 101298968670061968, guid: a973128504c33214581443df30a69ac5, type: 3}
+--- !u!114 &1007531038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007531033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c55c208aefab34bae38e0fb33b6da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PreviewTilePrefab: {fileID: 2473183399164263241, guid: a296e2774f57f684698388dde86cbd61, type: 3}
+  width: 0
+  height: 0
 --- !u!1 &1990869800
 GameObject:
   m_ObjectHideFlags: 0

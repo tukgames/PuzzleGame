@@ -80,6 +80,7 @@ public class SectorManager : MonoBehaviour
         croppedTexture.Apply();
         TileManager.instance.GenerateAllInitialTiles((int)(res.x * res.y), croppedTexture);
         GenerateAllTilesWithSprite();
+        SectorPreviewManager.instance.Begin();
     }
 
     public void GenerateAllTilesWithSprite()
@@ -102,6 +103,8 @@ public class SectorManager : MonoBehaviour
             //TileManager.instance.AssignSprites(i);
 
         }
+
+        TileManager.instance.AssignAllSprites();
     }
 
     public void GenerateAndPlaceSectors()
@@ -142,6 +145,7 @@ public class SectorManager : MonoBehaviour
         GridManager.instance.EraseLines();
         TileManager.instance.StartTiles( i);
         DeactivateSectors();
+        SectorPreviewManager.instance.DisableTiles();
     }
 
     // Update is called once per frame
@@ -155,6 +159,7 @@ public class SectorManager : MonoBehaviour
         /*sector was solved and now the sprite should be shown and
         the sectors should be redrawn with the grid manager.*/
         ActivateSectors();
+        SectorPreviewManager.instance.EnableTiles();
         GridManager.instance.DrawGrid(res.y, res.x, width, height);
         sectors[activatedSector].GetComponent<SpriteRenderer>().enabled = true;
         sectors[activatedSector].GetComponent<Sector>().isSelectable = false;

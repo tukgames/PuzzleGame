@@ -77,7 +77,7 @@ public class TileManager : MonoBehaviour
         //Debug.Log(pixelWidth);
         //GenerateTiles();
         GenerateAndPlaceBlanks();
-        AssignSprites(cS);
+        //AssignSprites(cS);
         //PlaceInitialTile();
         GridManager.instance.DrawGrid(res.y , res.x, width, height);
         EnableTiles();
@@ -158,6 +158,17 @@ public class TileManager : MonoBehaviour
             DisableTiles();
         }
 
+    }
+    public void AssignAllSprites()
+    {
+        pixelRes.x = textures[cS].width / res.x;
+        pixelRes.y = textures[cS].height / res.y;
+        for (int i = 0; i< puzzles.Count; i++)
+        {
+            AssignSprites(i);
+        }
+
+        //SectorPreviewManager.instance.AssignImages();
     }
 
     public void AssignSprites(int cS)
